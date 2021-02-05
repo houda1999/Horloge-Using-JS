@@ -1,0 +1,82 @@
+<!DOCTYPE>
+<html>
+<head>
+	<style type="text/css">
+		#numbers
+		{
+			font-size: 50px;
+		}
+		#container
+		{
+			background-color: grey;
+		}
+		#ticks
+		{
+			stroke:rgb(0,0,0);
+			stroke-width:3;
+		}
+		#second
+		{
+           stroke:grey;
+           stroke-width:3;
+		}
+		#minutes
+		{
+           stroke:black;
+           stroke-width:5;
+		}
+		#hours
+		{
+           stroke:black;
+           stroke-width:8;
+		}
+	</style>
+</head>
+<body>
+	<svg width="500" height="500" id="container">
+       <circle cx="250" cy="250" r="240" stroke="black" stroke-width="4" fill="pink" />
+         <g id="numbers">
+           <text x="227" y="60">12</text>
+           <text x="445" y="260">3</text>
+           <text x="30" y="260">9</text>
+           <text x="240" y="463">6</text>
+         </g>
+
+         <g id="ticks">
+         	<line x1="10" y1="250" x2="30" y2="250" style="" />
+         	<line x1="470" y1="250" x2="490" y2="250"/>
+         	<line x1="250" y1="10" x2="250" y2="30"/>
+         	<line x1="250" y1="470" x2="250" y2="490"/>
+         </g>
+         <g>
+         	<line id="second" x1="250" y1="60" x2="250" y2="250" transform="rotate(0,250,250)"/>
+         	<line id="minutes" x1="250" y1="80" x2="250" y2="250" transform="rotate(0,250,250)"/>
+         	<line id="hours" x1="250" y1="120" x2="250" y2="250" transform="rotate(0,250,250)"/>
+         </g>
+         <circle cx="250" cy="250" r="5" fill="black" />
+    </svg>
+</body>
+    <script>
+    	let s = document.getElementById("second");
+    	let m = document.getElementById("minutes");
+    	let h = document.getElementById("hours");
+    	setInterval(function()
+              {
+        
+                     let date = new Date();
+                     let sc = date.getSeconds();
+                     let mn = date.getMinutes();
+                     let hs = date.getHours();
+      
+                     let sr = sc*360/60; 
+                     let mr = mn*360/60;
+                     let hr = hs*360/12;
+
+                     s.setAttribute("transform",'rotate('+sr+',250,250)');
+                     m.setAttribute("transform",'rotate('+mr+',250,250)');
+                     h.setAttribute("transform",'rotate('+hr+',250,250)');
+              }
+        ,1000);
+
+    </script>
+</html>
